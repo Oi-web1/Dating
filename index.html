@@ -26,7 +26,8 @@ function card(p){
     ? `<img src="${esc(p.photo)}" alt="${esc(p.name)}">`
     : `<div class="ph" aria-hidden="true">👤</div>`;
   return `<article class="card">
-    <div class="photo">${img}</div>
+    ${img}
+    <div class="shade" aria-hidden="true"></div>
     <div class="info">
       ${p.name ? `<h2>${esc(p.name)}</h2>` : ""}
       ${p.age ? `<div class="age">বয়স ${esc(p.age)}</div>` : ""}
