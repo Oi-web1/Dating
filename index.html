@@ -13,7 +13,6 @@
 <div id="ad-top" class="ad-slot"></div>
 <main id="people" class="people"></main>
 <div id="ad-bottom" class="ad-slot"></div>
-<div id="toast" role="status" aria-live="polite"></div>
 
 <script src="data.js"></script>
 <script>
@@ -26,8 +25,7 @@ function card(p){
     ? `<img src="${esc(p.photo)}" alt="${esc(p.name)}">`
     : `<div class="ph" aria-hidden="true">👤</div>`;
   return `<article class="card">
-    ${img}
-    <div class="shade" aria-hidden="true"></div>
+    <div class="photo">${img}</div>
     <div class="info">
       ${p.name ? `<h2>${esc(p.name)}</h2>` : ""}
       ${p.age ? `<div class="age">বয়স ${esc(p.age)}</div>` : ""}
@@ -71,20 +69,12 @@ setAd(document.getElementById("ad-top"), ADS.top);
 setAd(document.getElementById("ad-bottom"), ADS.bottom);
 
 // Chat বাটন
-let toastTimer;
-function toast(msg){
-  const t = document.getElementById("toast");
-  t.textContent = msg;
-  t.classList.add("show");
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => t.classList.remove("show"), 3000);
-}
 document.addEventListener("click", e => {
   const b = e.target.closest("[data-chat]");
   if (!b) return;
   const num = b.dataset.chat;
   if (num) window.open("https://wa.me/" + num, "_blank", "noopener");
-  else toast("I am not available right now. Please try again later.");
+  else window.location.href = "unavailable.html";
 });
 </script>
 </body>
