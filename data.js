@@ -5,10 +5,10 @@ const SITE_TITLE = "";
 
 // আপনার নিজের কার্ড
 const ME = {
-  photo: "images/me.jpg",
-  name: "Ornob",
-  age: "21",
-  about: "Content Creator",
+  photo: "",
+  name: "",
+  age: "",
+  about: "",
   email: "",
   whatsapp: ""
 };
