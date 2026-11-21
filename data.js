@@ -6,9 +6,9 @@ const SITE_TITLE = "";
 // আপনার নিজের কার্ড
 const ME = {
   photo: "images/me.jpg",   // ছবির ফাইল, না থাকলে ""
-  name: "",
-  age: "",
-  about: "",
+  name: "Ornob",
+  age: "21",
+  about: "Content Creator",
   email: "",                // যেমন "you@gmail.com" (ফাঁকা হলে দেখাবে না)
   whatsapp: ""              // যেমন "8801XXXXXXXXX" (দেশের কোড সহ, + ছাড়া)। ফাঁকা হলে Chat-এ "not available" বার্তা আসবে
 };
