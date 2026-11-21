@@ -9,12 +9,12 @@ const SITE = {
 
 // ---- আপনার নিজের কার্ড ----
 const ME = {
-  photo: "",       // যেমন "images/me.jpg"
-  name: "",
-  age: "",
-  about: "",       // ছোট পরিচিতি
-  contact: "",     // যেমন "mailto:you@email.com" বা "https://..."
-  chat: ""         // যেমন "https://wa.me/8801XXXXXXXXX" বা "https://m.me/username"
+    photo: "images/me.jpg",
+    name: "Ornob",
+    age: "21",
+    about: "Content Creator",
+    contact: "mailto:karim@example.com",
+    chat: "https://wa.me/8801XXXXXXXXX"
 };
 
 // ---- বন্ধু/মেম্বারদের কার্ড ----
