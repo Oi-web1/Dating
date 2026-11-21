@@ -17,27 +17,28 @@ body{
 .ad-inline{grid-column:1/-1}
 .ad-inline:empty{display:none}
 
-/* কার্ড: ছবি পুরো কার্ড জুড়ে, নিচে নরম গ্রেডিয়েন্ট */
+/* কার্ড: ওপরে পুরো ছবি, নিচে আলাদা তথ্যের অংশ (মুখ লেখার নিচে চাপা পড়বে না) */
 .card{
-  position:relative;aspect-ratio:3/4;border-radius:22px;overflow:hidden;
-  background:#1d0b17;border:1px solid #ff4fa333;
-  box-shadow:0 0 30px #ff4fa338;
+  border-radius:22px;overflow:hidden;background:#1d0b17;
+  border:1px solid #ff4fa333;box-shadow:0 0 30px #ff4fa338;
+  display:flex;flex-direction:column;
 }
-.card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 15%;display:block}
-.ph{position:absolute;inset:0;display:grid;place-items:center;font-size:56px;
-  background:linear-gradient(#f3c6df,#b8568a);opacity:.9}
-.shade{
-  position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(to bottom,transparent 0%,transparent 42%,rgba(40,8,30,.45) 62%,rgba(18,5,14,.88) 84%,rgba(12,4,10,.95) 100%);
+.photo{position:relative;aspect-ratio:4/5;background:#f4f4f4;overflow:hidden}
+.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 8%;display:block}
+.ph{position:absolute;inset:0;display:grid;place-items:center;font-size:56px;background:linear-gradient(#f3c6df,#b8568a)}
+/* ছবির নিচের অংশ ধীরে ধীরে কার্ডের রঙে মিশবে */
+.photo::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:38%;pointer-events:none;
+  background:linear-gradient(to bottom,rgba(29,11,23,0),#1d0b17 100%);
 }
-.info{position:absolute;left:0;right:0;bottom:0;padding:14px 14px 14px;display:flex;flex-direction:column;gap:4px}
-.info h2{font-size:17px;font-weight:600;text-shadow:0 1px 6px rgba(0,0,0,.4)}
+.info{padding:12px 14px 14px;display:flex;flex-direction:column;gap:4px;margin-top:-4px}
+.info h2{font-size:17px;font-weight:600}
 .age{color:var(--pink-soft);font-size:13px}
 .info p{color:var(--muted);font-size:13px;line-height:1.45;margin:4px 0 6px}
 .mail{color:var(--pink-soft);font-size:12px;word-break:break-all;text-decoration:none}
 .mail:hover{text-decoration:underline}
 .btn{
-  margin-top:8px;padding:10px;border:0;border-radius:999px;cursor:pointer;
+  margin-top:10px;padding:10px;border:0;border-radius:999px;cursor:pointer;
   font-family:inherit;font-weight:600;font-size:14px;color:#fff;
   background:linear-gradient(90deg,#ff4fa3,#ff7cc0);box-shadow:0 0 16px #ff4fa366;
   transition:transform .15s,filter .15s;
