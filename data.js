@@ -13,8 +13,8 @@ const ME = {
     name: "Ornob",
     age: "21",
     about: "Content Creator",
-    contact: "mailto:karim@example.com",
-    chat: "https://wa.me/8801XXXXXXXXX"
+    contact: "ornobsoumon66@gmail.com",
+    chat: "https://wa.me/8801875530396"
 };
 
 // ---- বন্ধু/মেম্বারদের কার্ড ----
