@@ -1,4 +1,4 @@
-:root{--pink:#ff4fa3;--pink-soft:#ffb3d6;--muted:#f5cfe3}
+:root{--pink:#ff4fa3;--pink-soft:#ffb3d6;--muted:#f5d6e8}
 *{box-sizing:border-box;margin:0}
 body{
   font-family:"Inter","Hind Siliguri",system-ui,sans-serif;color:#fff;min-height:100vh;
@@ -16,24 +16,28 @@ body{
 @media(min-width:1200px){.people{grid-template-columns:repeat(5,minmax(0,1fr))}}
 .ad-inline{grid-column:1/-1}
 .ad-inline:empty{display:none}
+
+/* কার্ড: ছবি পুরো কার্ড জুড়ে, নিচে নরম গ্রেডিয়েন্ট */
 .card{
-  background:#1d0b17;border-radius:20px;overflow:hidden;display:flex;flex-direction:column;
-  border:1px solid #ff4fa366;box-shadow:0 0 26px #ff4fa333;
+  position:relative;aspect-ratio:3/4;border-radius:22px;overflow:hidden;
+  background:#1d0b17;border:1px solid #ff4fa333;
+  box-shadow:0 0 30px #ff4fa338;
 }
-.photo{
-  aspect-ratio:3/4;background:radial-gradient(circle,#ffd7ea,#c2578c);
-  display:grid;place-items:center;overflow:hidden;
+.card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 15%;display:block}
+.ph{position:absolute;inset:0;display:grid;place-items:center;font-size:56px;
+  background:linear-gradient(#f3c6df,#b8568a);opacity:.9}
+.shade{
+  position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(to bottom,transparent 0%,transparent 42%,rgba(40,8,30,.45) 62%,rgba(18,5,14,.88) 84%,rgba(12,4,10,.95) 100%);
 }
-.photo img{width:100%;height:100%;object-fit:contain;display:block}
-.ph{font-size:56px;opacity:.6}
-.info{padding:12px 12px 14px;display:flex;flex-direction:column;gap:4px;flex:1}
-.info h2{font-size:17px;font-weight:600}
+.info{position:absolute;left:0;right:0;bottom:0;padding:14px 14px 14px;display:flex;flex-direction:column;gap:4px}
+.info h2{font-size:17px;font-weight:600;text-shadow:0 1px 6px rgba(0,0,0,.4)}
 .age{color:var(--pink-soft);font-size:13px}
-.info p{color:var(--muted);font-size:13px;line-height:1.45;margin:4px 0}
+.info p{color:var(--muted);font-size:13px;line-height:1.45;margin:4px 0 6px}
 .mail{color:var(--pink-soft);font-size:12px;word-break:break-all;text-decoration:none}
 .mail:hover{text-decoration:underline}
 .btn{
-  margin-top:auto;padding:10px;border:0;border-radius:999px;cursor:pointer;
+  margin-top:8px;padding:10px;border:0;border-radius:999px;cursor:pointer;
   font-family:inherit;font-weight:600;font-size:14px;color:#fff;
   background:linear-gradient(90deg,#ff4fa3,#ff7cc0);box-shadow:0 0 16px #ff4fa366;
   transition:transform .15s,filter .15s;
