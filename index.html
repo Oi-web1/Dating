@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Profile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="ad-top" class="ad-slot"></div>
+<main id="people" class="people"></main>
+<div id="ad-bottom" class="ad-slot"></div>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script src="data.js"></script>
+<script>
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const digits = s => String(s || "").replace(/\D/g, "");
+
+function card(p){
+  const num = digits(p.whatsapp);
+  const img = p.photo
+    ? `<img src="${esc(p.photo)}" alt="${esc(p.name)}">`
+    : `<div class="ph" aria-hidden="true">👤</div>`;
+  return `<article class="card">
+    <div class="photo">${img}</div>
+    <div class="info">
+      ${p.name ? `<h2>${esc(p.name)}</h2>` : ""}
+      ${p.age ? `<div class="age">বয়স ${esc(p.age)}</div>` : ""}
+      ${p.about ? `<p>${esc(p.about)}</p>` : ""}
+      ${p.email ? `<a class="mail" href="mailto:${esc(p.email)}">✉ ${esc(p.email)}</a>` : ""}
+      <button class="btn" data-chat="${num}">Chat</button>
+    </div>
+  </article>`;
+}
+
+// বিজ্ঞাপনের কোডে থাকা <script> যাতে চলে, সেজন্য নতুন করে তৈরি করা হচ্ছে
+function setAd(el, code){
+  if(!el) return;
+  el.innerHTML = "";
+  if(!code || !code.trim()) return;
+  const t = document.createElement("template");
+  t.innerHTML = code;
+  t.content.querySelectorAll("script").forEach(old => {
+    const s = document.createElement("script");
+    for (const a of old.attributes) s.setAttribute(a.name, a.value);
+    s.textContent = old.textContent;
+    old.replaceWith(s);
+  });
+  el.appendChild(t.content);
+}
+
+if (SITE_TITLE) document.title = SITE_TITLE;
+
+const people = [ME, ...MEMBERS].filter(p => p.name || p.photo || p.about || p.email || p.whatsapp);
+let html = "", inlineCount = 0;
+people.forEach((p, i) => {
+  html += card(p);
+  if (ADS.inline && ADS.inlineEvery > 0 && (i + 1) % ADS.inlineEvery === 0 && i + 1 < people.length) {
+    html += `<div class="ad-inline" id="ad-inline-${inlineCount}"></div>`;
+    inlineCount++;
+  }
+});
+document.getElementById("people").innerHTML = html;
+for (let k = 0; k < inlineCount; k++) setAd(document.getElementById("ad-inline-" + k), ADS.inline);
+setAd(document.getElementById("ad-top"), ADS.top);
+setAd(document.getElementById("ad-bottom"), ADS.bottom);
+
+// Chat বাটন
+let toastTimer;
+function toast(msg){
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove("show"), 3000);
+}
+document.addEventListener("click", e => {
+  const b = e.target.closest("[data-chat]");
+  if (!b) return;
+  const num = b.dataset.chat;
+  if (num) window.open("https://wa.me/" + num, "_blank", "noopener");
+  else toast("I am not available right now. Please try again later.");
+});
+</script>
+</body>
+</html>

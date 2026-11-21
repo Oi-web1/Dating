@@ -1,0 +1,49 @@
+:root{--pink:#ff4fa3;--pink-soft:#ffb3d6;--muted:#f5cfe3}
+*{box-sizing:border-box;margin:0}
+body{
+  font-family:"Inter","Hind Siliguri",system-ui,sans-serif;color:#fff;min-height:100vh;
+  background:radial-gradient(circle at 50% -10%,#5a1645 0%,#24091c 45%,#0b050a 100%) fixed;
+  padding:24px 14px 60px;
+}
+.ad-slot{width:100%;max-width:1200px;margin:0 auto 18px}
+.ad-slot:empty{display:none}
+.people{
+  max-width:1200px;margin:0 auto;display:grid;gap:22px 16px;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+}
+@media(min-width:700px){.people{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(min-width:1000px){.people{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(min-width:1200px){.people{grid-template-columns:repeat(5,minmax(0,1fr))}}
+.ad-inline{grid-column:1/-1}
+.ad-inline:empty{display:none}
+.card{
+  background:#1d0b17;border-radius:20px;overflow:hidden;display:flex;flex-direction:column;
+  border:1px solid #ff4fa366;box-shadow:0 0 26px #ff4fa333;
+}
+.photo{
+  aspect-ratio:3/4;background:radial-gradient(circle,#ffd7ea,#c2578c);
+  display:grid;place-items:center;overflow:hidden;
+}
+.photo img{width:100%;height:100%;object-fit:contain;display:block}
+.ph{font-size:56px;opacity:.6}
+.info{padding:12px 12px 14px;display:flex;flex-direction:column;gap:4px;flex:1}
+.info h2{font-size:17px;font-weight:600}
+.age{color:var(--pink-soft);font-size:13px}
+.info p{color:var(--muted);font-size:13px;line-height:1.45;margin:4px 0}
+.mail{color:var(--pink-soft);font-size:12px;word-break:break-all;text-decoration:none}
+.mail:hover{text-decoration:underline}
+.btn{
+  margin-top:auto;padding:10px;border:0;border-radius:999px;cursor:pointer;
+  font-family:inherit;font-weight:600;font-size:14px;color:#fff;
+  background:linear-gradient(90deg,#ff4fa3,#ff7cc0);box-shadow:0 0 16px #ff4fa366;
+  transition:transform .15s,filter .15s;
+}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.08)}
+.btn:focus-visible{outline:3px solid #fff;outline-offset:2px}
+#toast{
+  position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);opacity:0;
+  background:#2a0f22;border:1px solid var(--pink);padding:12px 18px;border-radius:12px;
+  font-size:14px;max-width:90vw;text-align:center;pointer-events:none;transition:.3s;
+}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
